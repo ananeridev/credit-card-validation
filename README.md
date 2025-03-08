@@ -1,4 +1,4 @@
-## TDD IS DEAD
+## Credit Card Validation
 
 This is a complete project that validates credit card number using TDD strategy and template method design pattern
 
@@ -34,4 +34,3 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-# credit-card-validation
