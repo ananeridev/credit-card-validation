@@ -2,6 +2,12 @@
 
 This is a complete project that validates credit card number using TDD strategy and template method design pattern
 
+## Depedencies
+
+For those who came from the youtube video this is the dependencies that I used:
+
+webpack, @nestjs/config, @nestjs/testing @types/jest ts-jest
+
 ## Installation
 
 ```bash
