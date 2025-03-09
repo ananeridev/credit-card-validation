@@ -8,43 +8,43 @@ describe('MasterCardService', () => {
     service = new MasterCardService();
   });
 
-  it('deve validar um CVV correto para MasterCard', () => {
+  it('should validate a correct CVV for MasterCard', () => {
     expect(service.processCard('5111111111111111', '456')).toBe(true);
   });
 
-  it('deve lançar erro se o número do cartão não for MasterCard', () => {
+  it('should throw an error if the card number is not a MasterCard', () => {
     expect(() => service.processCard('4111111111111111', '456')).toThrowError(
-      'Número de cartão inválido para MasterCard.',
+      'Invalid card number for MasterCard.',
     );
   });
 
-  it('deve lançar erro se o CVV for menor que 3 dígitos', () => {
+  it('should throw an error if the CVV is less than 3 digits', () => {
     expect(() => service.processCard('5111111111111111', '45')).toThrowError(
-      'CVV inválido para cartões MasterCard. Deve ter 3 dígitos.',
+      'Invalid CVV for MasterCard cards. It must have 3 digits.',
     );
   });
 
-  it('deve lançar erro se o CVV for maior que 3 dígitos', () => {
+  it('should throw an error if the CVV is more than 3 digits', () => {
     expect(() => service.processCard('5111111111111111', '4567')).toThrowError(
-      'CVV inválido para cartões MasterCard. Deve ter 3 dígitos.',
+      'Invalid CVV for MasterCard cards. It must have 3 digits.',
     );
   });
 
-  it('deve lançar erro se o CVV for menor que 3 dígitos', () => {
+  it('should throw a BadRequestException if the CVV is less than 3 digits', () => {
     expect(() => service.processCard('5111111111111111', '45')).toThrow(
       BadRequestException,
     );
     expect(() => service.processCard('5111111111111111', '45')).toThrow(
-      'CVV inválido para cartões MasterCard. Deve ter 3 dígitos.',
+      'Invalid CVV for MasterCard cards. It must have 3 digits.',
     );
   });
 
-  it('deve lançar erro se o CVV for maior que 3 dígitos', () => {
+  it('should throw a BadRequestException if the CVV is more than 3 digits', () => {
     expect(() => service.processCard('5111111111111111', '4567')).toThrow(
       BadRequestException,
     );
     expect(() => service.processCard('5111111111111111', '4567')).toThrow(
-      'CVV inválido para cartões MasterCard. Deve ter 3 dígitos.',
+      'Invalid CVV for MasterCard cards. It must have 3 digits.',
     );
   });
 });

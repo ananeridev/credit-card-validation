@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BadRequestException } from '@nestjs/common';
 import { CreditCardController } from 'src/controller/creditCard.controller';
-import { MasterCardService } from 'src/services/mastercardCard.service';
 import { VisaCardService } from 'src/services/visaCard.service';
+import { MasterCardService } from 'src/services/mastercardCard.service';
 
 describe('CreditCardController', () => {
   let controller: CreditCardController;
@@ -20,45 +20,45 @@ describe('CreditCardController', () => {
     masterCardService = module.get<MasterCardService>(MasterCardService);
   });
 
-  it('deve validar um cartão Visa válido', () => {
+  it('should validate a valid Visa card', () => {
     expect(
       controller.validateCard({ cardNumber: '4111111111111111', cvv: '123' }),
     ).toBe(true);
   });
 
-  it('deve validar um cartão MasterCard válido', () => {
+  it('should validate a valid MasterCard card', () => {
     expect(
       controller.validateCard({ cardNumber: '5111111111111111', cvv: '456' }),
     ).toBe(true);
   });
 
-  it('deve lançar erro para bandeira não suportada', () => {
+  it('should throw an error for an unsupported card flag', () => {
     try {
       controller.validateCard({ cardNumber: '6111111111111111', cvv: '123' });
     } catch (error) {
       expect(error).toBeInstanceOf(BadRequestException);
-      expect(error.message).toBe('Bandeira de cartão não suportada.');
+      expect(error.message).toBe('Card flag not supported.');
     }
   });
 
-  it('deve lançar erro para CVV inválido no Visa', () => {
+  it('should throw an error for an invalid CVV on Visa', () => {
     try {
       controller.validateCard({ cardNumber: '4111111111111111', cvv: '12' });
     } catch (error) {
       expect(error).toBeInstanceOf(BadRequestException);
       expect(error.message).toBe(
-        'CVV inválido para cartões VISA. Deve ter 3 dígitos.',
+        'Invalid CVV for VISA cards. It must have 3 digits.',
       );
     }
   });
 
-  it('deve lançar erro para CVV inválido no MasterCard', () => {
+  it('should throw an error for an invalid CVV on MasterCard', () => {
     try {
       controller.validateCard({ cardNumber: '5111111111111111', cvv: '99' });
     } catch (error) {
       expect(error).toBeInstanceOf(BadRequestException);
       expect(error.message).toBe(
-        'CVV inválido para cartões MasterCard. Deve ter 3 dígitos.',
+        'Invalid CVV for MasterCard cards. It must have 3 digits.',
       );
     }
   });

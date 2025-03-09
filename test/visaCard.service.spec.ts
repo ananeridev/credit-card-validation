@@ -8,34 +8,34 @@ describe('VisaCardService', () => {
     service = new VisaCardService();
   });
 
-  it('deve validar um CVV correto para Visa', () => {
+  it('should validate a correct CVV for Visa', () => {
     expect(service.processCard('4111111111111111', '123')).toBe(true);
   });
 
-  it('deve lançar erro se o número do cartão não for Visa', () => {
+  it('should throw an error if the card number is not a Visa', () => {
     expect(() => service.processCard('5111111111111111', '123')).toThrow(
       BadRequestException,
     );
     expect(() => service.processCard('5111111111111111', '123')).toThrow(
-      'Número de cartão inválido para VISA.',
+      'Invalid card number for VISA.',
     );
   });
 
-  it('deve lançar erro se o CVV for menor que 3 dígitos', () => {
+  it('should throw an error if the CVV is less than 3 digits', () => {
     expect(() => service.processCard('4111111111111111', '12')).toThrow(
       BadRequestException,
     );
     expect(() => service.processCard('4111111111111111', '12')).toThrow(
-      'CVV inválido para cartões VISA. Deve ter 3 dígitos.',
+      'Invalid CVV for VISA cards. It must have 3 digits.',
     );
   });
 
-  it('deve lançar erro se o CVV for maior que 3 dígitos', () => {
+  it('should throw an error if the CVV is more than 3 digits', () => {
     expect(() => service.processCard('4111111111111111', '1234')).toThrow(
       BadRequestException,
     );
     expect(() => service.processCard('4111111111111111', '1234')).toThrow(
-      'CVV inválido para cartões VISA. Deve ter 3 dígitos.',
+      'Invalid CVV for VISA cards. It must have 3 digits.',
     );
   });
 });

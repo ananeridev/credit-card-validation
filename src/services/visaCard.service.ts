@@ -5,14 +5,14 @@ import { BaseCreditCardService } from './baseCreditCard.service';
 export class VisaCardService extends BaseCreditCardService {
   protected validateCardNumber(cardNumber: string): void {
     if (!cardNumber.startsWith('4')) {
-      throw new BadRequestException('Número de cartão inválido para VISA.');
+      throw new BadRequestException('Invalid card number for VISA.');
     }
   }
 
   protected validateCVV(cardNumber: string, cvv: string): boolean {
     if (cvv.length !== 3) {
       throw new BadRequestException(
-        'CVV inválido para cartões VISA. Deve ter 3 dígitos.',
+        'Invalid CVV for VISA cards. It must have 3 digits',
       );
     }
     return true;

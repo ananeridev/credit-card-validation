@@ -18,7 +18,7 @@ export class CreditCardController {
     } else if (cardNumber.startsWith('5')) {
       return this.masterCardService.processCard(cardNumber, cvv);
     } else {
-      throw new BadRequestException('Bandeira de cartão não suportada.');
+      throw new BadRequestException('Card flag not supported.');
     }
   }
 }
