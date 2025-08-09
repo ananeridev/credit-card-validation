@@ -12,7 +12,7 @@ export class MasterCardService extends BaseCreditCardService {
   protected validateCVV(cardNumber: string, cvv: string): boolean {
     if (cvv.length !== 3) {
       throw new BadRequestException(
-        'Invalid CVV for MasterCard cards. It must have 3 digits..',
+        'Invalid CVV for MasterCard cards. It must have 3 digits.',
       );
     }
     return true;
